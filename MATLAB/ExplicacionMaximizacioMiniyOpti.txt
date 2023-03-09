@@ -1,0 +1,25 @@
+% Definir la función objetivo
+f = @(x) x(1)*x(2)*x(3); % Ejemplo: maximizar el volumen de un paralelepípedo
+
+% Definir las restricciones
+A = [1 1 1; -1 0 0; 0 -1 0; 0 0 -1]; % Matriz de restricciones lineales
+b = [10; 0; 0; 0]; % Vector de restricciones lineales
+lb = [0, 0, 0]; % Límites inferiores
+ub = [5, 5, 5]; % Límites superiores
+
+% Ejecutar la optimización
+x0 = [1, 1, 1]; % Punto inicial
+[x, fval] = fmincon(f, x0, A, b, [], [], lb, ub);
+
+% Mostrar resultados
+fprintf('Solución encontrada:\n');
+fprintf('x = (%f, %f, %f)\n', x(1), x(2), x(3));
+fprintf('f(x) = %f\n', -fval); % Se utiliza -fval para maximizar
+
+En este ejemplo, se define una función objetivo f(x) como el producto de las tres variables de entrada, lo que representa el volumen de un paralelepípedo. También se definen las restricciones para las variables de entrada, en este caso, la suma de las tres variables debe ser menor o igual a 10, y cada variable debe ser mayor o igual a cero y menor o igual a 5.
+
+Luego, se utiliza la función fmincon() de MATLAB para encontrar el valor óptimo de x que maximiza la función objetivo sujeta a las restricciones definidas. El resultado de la optimización se almacena en la variable x, y el valor óptimo se almacena en la variable fval.
+
+Finalmente, se muestran los resultados de la optimización, incluyendo el valor óptimo de x y el valor óptimo de la función objetivo, que en este caso es el volumen del paralelepípedo. En este ejemplo se utiliza -fval para maximizar la función, ya que la función fmincon() minimiza la función objetivo de forma predeterminada.
+
+Este código se puede modificar o ampliar según las necesidades específicas del usuario, por ejemplo, para incluir más restricciones o para cambiar la función objetivo.
